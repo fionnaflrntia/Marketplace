@@ -36,7 +36,6 @@ export async function loader() {
 		const items = (await response.json()) as ProductCardItem[];
 		return { items: items.slice(0, 4) } satisfies LoaderData;
 	} catch (error) {
-		// If auth error (401), redirect to login
 		if (error instanceof AuthError && error.statusCode === 401) {
 			return redirect("/login");
 		}

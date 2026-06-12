@@ -4,7 +4,7 @@ import { AppShell } from "../components/layout/AppShell";
 import { authService, AuthError } from "../services/authService";
 import { formatRupiah } from "../utils/currency";
 
-const API_BASE_URL = "http://localhost:5000/api";
+const API_BASE_URL = import.meta.env.VITE_API_URL || "https://marketplace-backend-ochre.vercel.app/api";
 
 type CartItem = {
     productId: {

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { AppShell } from "../components/layout/AppShell";
 import { ProductCard, type ProductCardItem } from "../components/product/ProductCard";
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+const API_BASE_URL = import.meta.env.VITE_API_URL || "https://marketplace-backend-ochre.vercel.app/api";
 
 export function meta({}: Route.MetaArgs) {
 	return [
@@ -21,7 +21,7 @@ export default function ProductsPage() {
 			try {
 				setIsLoading(true);
 
-				const response = await fetch("http://localhost:5000/api/items");
+				const response = await fetch(`${API_BASE_URL}/items`);
 
 				if (!response.ok) {
 					throw new Error("Gagal mengambil data produk dari server");

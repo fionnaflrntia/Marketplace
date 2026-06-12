@@ -11,10 +11,8 @@ const app = express();
 
 connectDB();
 
-// CORS middleware
 app.use(cors({ origin: "*" }));
 
-// Allow JSON payloads that include small base64 images.
 app.use(express.json({ limit: "5mb" }));
 app.use(express.urlencoded({ extended: true, limit: "5mb" }));
 
