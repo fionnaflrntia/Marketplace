@@ -8,7 +8,6 @@ import { ProductShell } from "../components/product/ProductShell";
 import { authService, AuthError } from "../services/authService";
 import { analytics } from "../utils/analytics";
 
-// Use same API base as authService (without /api suffix since we add it in endpoint)
 const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
 
 function readFileAsDataUrl(file: File): Promise<string> {
@@ -40,7 +39,6 @@ export default function ProductNewPage() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Client-side auth check
   useEffect(() => {
     if (!authService.isAuthenticated()) {
       navigate("/login");

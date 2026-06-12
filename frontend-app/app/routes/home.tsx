@@ -5,7 +5,7 @@ import { AppShell } from "../components/layout/AppShell";
 import { ProductCard, type ProductCardItem } from "../components/product/ProductCard";
 import { authService, AuthError } from "../services/authService";
 
-const API_BASE_URL = "http://localhost:5000/api";
+const API_BASE_URL = import.meta.env.VITE_API_URL || "https://marketplace-backend-ochre.vercel.app/api";
 
 type LoaderData = {
 	items: ProductCardItem[];
@@ -14,14 +14,11 @@ type LoaderData = {
 
 export async function loader() {
 	const isBrowser = typeof window !== "undefined";
-	
-	// On server, can't access localStorage, so skip API call
-	// Page will hydrate and client will fetch if authenticated
+
 	if (!isBrowser) {
 		return { items: [] } satisfies LoaderData;
 	}
 
-	// On client: check authentication
 	if (!authService.isAuthenticated()) {
 		return redirect("/login");
 	}

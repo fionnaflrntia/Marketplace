@@ -7,7 +7,6 @@ import { authService } from "../services/authService";
 import { analytics } from "../utils/analytics";
 
 export async function loader() {
-	// If already logged in, redirect to products (only on client)
 	const isBrowser = typeof window !== "undefined";
 	if (isBrowser && authService.isAuthenticated()) {
 		return redirect("/products");
